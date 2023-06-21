@@ -140,12 +140,29 @@ const getWinnings = (rows, bet, lines) => {
     return winnings;
 }
 
+const game = () => {
+    let balance = makeDeposit();
 
-let balance = makeDeposit();
-const numberOfLines = getNumberOfLines();
-const bet = getBet(balance);
-const reels = spin();
-const rows = transpose(reels);
-printRows(rows);
-const winnings = getWinnings(rows, bet, numberOfLines);
-console.log(`You won, $${winnings.toString()}`);
+    while(true) {
+        console.log(`You have a balance of $${balance}`);
+        const numberOfLines = getNumberOfLines();
+        const bet = getBet(balance);
+        balance -= bet * numberOfLines;
+        const reels = spin();
+        const rows = transpose(reels);
+        printRows(rows);
+        const winnings = getWinnings(rows, bet, numberOfLines);
+        balance += winnings;
+        console.log(`You won, $${winnings.toString()}`);
+
+        if(balance <= 0){
+            console.log("You ran out of money!");
+            break;
+        }
+
+        const playAgain = prompt("Do you want to play again (y/n)?");
+        if(playAgain != "y") break; // one line body or one line if statement, I don't have to use brackets
+    }
+}
+
+game();
