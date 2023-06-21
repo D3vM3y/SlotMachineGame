@@ -67,7 +67,7 @@ const getBet = (balance, lines) => {
     }
 }
 
-// review function later on >> see minute 37
+// review function later on >> see minute 44 >> https://www.youtube.com/watch?v=E3XxeE7NF30
 const spin = () => {
     const symbols = [];
 
@@ -77,8 +77,9 @@ const spin = () => {
         }
     }
 
-    const reels = [[],[],[]];
+    const reels = [];
     for(let i = 0; i < COLS; i++){
+        reels.push([]);
         const reelSymbols = [...symbols]; //...symbols copies all the available symbols from the beforehand created symbols array
         for(let j = 0; j < ROWS; j++){
             const randomIndex = Math.floor(Math.random() * reelSymbols.length);
@@ -92,8 +93,22 @@ const spin = () => {
     return reels;
 }
 
+const transpose = (reels) => {
+    const rows = [];
+
+    for(let i=0 ; i < ROWS; i++){
+        rows.push([]);
+        for(let j=0; j<COLS; j++){
+            rows[i].push(reels[j][i]);
+        }
+    }
+    return rows;
+}
+
+
 let balance = makeDeposit();
 const numberOfLines = getNumberOfLines();
 const bet = getBet(balance);
 const reels = spin();
+const rows = transpose(reels);
 
