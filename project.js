@@ -72,20 +72,21 @@ const spin = () => {
     const symbols = [];
 
     for(const [symbol, count] of Object.entries(SYMBOL_COUNT)){
+        // generating an array from all the symbols that can be chose.
         for (let i = 0; i < count; i++){
             symbols.push(symbol);
         }
     }
 
-    const reels = [];
-    for(let i = 0; i < COLS; i++){
-        reels.push([]);
+    const reels = []; //temporary array that has all the different reels
+    for(let i = 0; i < COLS; i++){ //This loops through all available reels represented by COLS
+        reels.push([]); //adding a reel for every COLS that is available for example 1 col = one reel array
         const reelSymbols = [...symbols]; //...symbols copies all the available symbols from the beforehand created symbols array
-        for(let j = 0; j < ROWS; j++){
-            const randomIndex = Math.floor(Math.random() * reelSymbols.length);
-            const selectedSymbol = reelSymbols[randomIndex];
-            reels[i].push(selectedSymbol);
-            reelSymbols.splice(randomIndex, 1);
+        for(let j = 0; j < ROWS; j++){ //looping through all the rows in the reel
+            const randomIndex = Math.floor(Math.random() * reelSymbols.length); //generate randomIndex by multiplying the length of the reelSymbols array with a random number between 0 and 1. This number is rounded down to the nearest integer by math.floor 
+            const selectedSymbol = reelSymbols[randomIndex]; //Adding symbol at randomIndex
+            reels[i].push(selectedSymbol); // adding the symbol to the current reel represented by the i
+            reelSymbols.splice(randomIndex, 1); // removing symbol from reelsSymbols at randomIndex
 
         }
     }
