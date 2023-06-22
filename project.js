@@ -106,7 +106,7 @@ const transpose = (reels) => {
     return rows;
 }
 
-// explain and understand the function >> minute 54:38
+
 const printRows = (rows) => {
     for(const row of rows){ //looping through every single row in the rows array
         let rowString = "";
