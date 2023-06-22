@@ -67,7 +67,7 @@ const getBet = (balance, lines) => {
     }
 }
 
-// review function later on >> see minute 44 >> https://www.youtube.com/watch?v=E3XxeE7NF30
+
 const spin = () => {
     const symbols = [];
 
@@ -108,11 +108,11 @@ const transpose = (reels) => {
 
 // explain and understand the function >> minute 54:38
 const printRows = (rows) => {
-    for(const row of rows){
+    for(const row of rows){ //looping through every single row in the rows array
         let rowString = "";
-        for(const[i, symbol] of row.entries()){
+        for(const[i, symbol] of row.entries()){ //looping through both, the index and the symbol taht exist in that row
             rowString += symbol;
-            if(i != row.length - 1){
+            if(i != row.length - 1){ //checking if the element is the last element of the row. if true the pipe is not placed
                 rowString += " | ";
             }
         }
